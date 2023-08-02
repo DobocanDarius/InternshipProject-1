@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Models;
+namespace Models.Request;
 
-public class UserModel
+public class UserRequest
 {
-    public int Id { get; set; }
     public string? UserName { get; set; }
     public string? Password { get; set; }
 }

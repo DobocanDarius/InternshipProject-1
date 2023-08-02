@@ -6,12 +6,24 @@ public static class Api
     {
         //endpoint mapping
         app.MapGet("/Users", GetUsers);
+        app.MapGet("/Posts", GetPosts);
         app.MapGet("/Users/{id}", GetUser);
         app.MapPost("/Users", InsertUser);
         app.MapPut("/Users", UpdateUser);
         app.MapDelete("/Users", DeleteUser);
     }
+    private static async Task<IResult> GetPosts(IPostData data)
+    {
+        try
+        {
+            return Results.Ok(await data.GetPosts());
 
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
     private static async Task<IResult> GetUsers(IUserData data)
     {
         try

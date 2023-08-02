@@ -59,6 +59,8 @@
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Procedures" />
+    <Folder Include="dbo\Procedures\User" />
+    <Folder Include="dbo\Procedures\Post" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
@@ -66,11 +68,12 @@
     <Build Include="dbo\Tables\Comment.sql" />
     <Build Include="dbo\Tables\Topic.sql" />
     <Build Include="dbo\Tables\PostTopic.sql" />
-    <Build Include="dbo\Procedures\sp_UserGetAll.sql" />
-    <Build Include="dbo\Procedures\sp_UserGet.sql" />
-    <Build Include="dbo\Procedures\sp_UserDelete.sql" />
-    <Build Include="dbo\Procedures\sp_UserInsert.sql" />
-    <Build Include="dbo\Procedures\sp_UserUpdate.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserDelete.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserGet.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserGetAll.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserInsert.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserUpdate.sql" />
+    <Build Include="dbo\Procedures\Post\sp_PostGetAll.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />
