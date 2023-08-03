@@ -1,15 +1,15 @@
-using DataAccess.DbAccess;
-using WebApi;
+
+global using WebApplication1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers();
+builder.Services.AddDbContext<LocalDbContext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddSingleton<IUserData, UserData>();
-builder.Services.AddSingleton<IPostData, PostData>();
 
 var app = builder.Build();
 
@@ -22,6 +22,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.ConfigureApi();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

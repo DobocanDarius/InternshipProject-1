@@ -1,0 +1,30 @@
+﻿@using Models.Response
+@using System.Text.Json
+@model IEnumerable<PostResponse>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Body</td>
+            </tr>
+        }
+    </table>
+</div>

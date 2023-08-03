@@ -8,13 +8,20 @@ namespace Models.Response;
 
 public class UserResponse
 {
-    public UserResponse(int id, string userName)
+    public UserResponse(string userName, string password)
+    {
+        UserName = userName;
+        Password = password;
+    }
+
+    public UserResponse(int id, string? userName, string? password)
     {
         Id = id;
         UserName = userName;
-    
+        Password = password;
     }
 
-    public int Id { get; set; }
     public string UserName { get; set; }
+    public string Password { get; set; }
+    public int Id { get; }
 }

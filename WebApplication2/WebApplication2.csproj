@@ -7,11 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\SQLDatabase\SQLDatabase.sqlproj" />
+    <ProjectReference Include="..\WebApplication1\WebApplication1.csproj" />
   </ItemGroup>
 
 </Project>
