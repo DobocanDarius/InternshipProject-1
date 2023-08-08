@@ -6,5 +6,6 @@
     [UpVotes] INT NULL, 
     [CreatedAt] DATETIME NULL, 
     [UserId] INT NULL, 
+    [TopicId] INT NULL,
     CONSTRAINT [FK_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]) 
 )

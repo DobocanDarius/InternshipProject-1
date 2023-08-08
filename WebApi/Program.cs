@@ -1,5 +1,5 @@
 using DataAccess.DbAccess;
-using WebApi;
+using DataAccess.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddSingleton<IUserData, UserData>();
-builder.Services.AddSingleton<IPostData, PostData>();
+builder.Services.AddSingleton<IUser, DataAccess.Data.User>();
 
 var app = builder.Build();
 
@@ -22,6 +21,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.ConfigureApi();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();

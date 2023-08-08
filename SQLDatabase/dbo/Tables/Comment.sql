@@ -2,8 +2,8 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Text] NVARCHAR(MAX) NULL, 
-    [UserId] INT NOT NULL, 
-    [PostId] INT NOT NULL, 
+    [UserId] INT NULL, 
+    [PostId] INT NULL, 
     [UpVotes] INT NULL, 
     [CreatedAt] DATETIME NULL, 
     CONSTRAINT [FK_UserId] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]), 

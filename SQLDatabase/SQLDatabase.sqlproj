@@ -61,6 +61,8 @@
     <Folder Include="dbo\Procedures" />
     <Folder Include="dbo\Procedures\User" />
     <Folder Include="dbo\Procedures\Post" />
+    <Folder Include="dbo\Procedures\Comment" />
+    <Folder Include="dbo\Procedures\Topic" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
@@ -68,12 +70,25 @@
     <Build Include="dbo\Tables\Comment.sql" />
     <Build Include="dbo\Tables\Topic.sql" />
     <Build Include="dbo\Tables\PostTopic.sql" />
-    <Build Include="dbo\Procedures\User\sp_UserDelete.sql" />
     <Build Include="dbo\Procedures\User\sp_UserGet.sql" />
-    <Build Include="dbo\Procedures\User\sp_UserGetAll.sql" />
-    <Build Include="dbo\Procedures\User\sp_UserInsert.sql" />
-    <Build Include="dbo\Procedures\User\sp_UserUpdate.sql" />
+    <Build Include="dbo\Procedures\Post\sp_PostDelete.sql" />
     <Build Include="dbo\Procedures\Post\sp_PostGetAll.sql" />
+    <Build Include="dbo\Procedures\Post\sp_PostInsert.sql" />
+    <Build Include="dbo\Procedures\Post\sp_PostUpdate.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserUpdate.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserInsert.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserGetAll.sql" />
+    <Build Include="dbo\Procedures\User\sp_UserDelete.sql" />
+    <Build Include="dbo\Procedures\Comment\sp_CommentDelete.sql" />
+    <Build Include="dbo\Procedures\Comment\sp_CommentGetAll.sql" />
+    <Build Include="dbo\Procedures\Comment\sp_CommentInsert.sql" />
+    <Build Include="dbo\Procedures\Comment\sp_CommentUpdate.sql" />
+    <Build Include="dbo\Procedures\Topic\sp_TopicInsert.sql" />
+    <Build Include="dbo\Procedures\Topic\sp_TopicDelete.sql" />
+    <Build Include="dbo\Procedures\Post\sp_PostUpVote.sql" />
+    <Build Include="dbo\Procedures\Post\sp_PostGetByTopic.sql" />
+    <Build Include="dbo\Procedures\Topic\sp_TopicGetAll.sql" />
+    <Build Include="dbo\Procedures\Comment\sp_CommentGetByPost.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />
