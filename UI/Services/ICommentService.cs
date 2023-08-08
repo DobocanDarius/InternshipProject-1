@@ -1,9 +1,9 @@
-﻿using RequestResponseModels.Posts.Response;
+﻿using RequestResponseModels.Comments.Response;
 
 namespace UI.Services
 {
     public interface ICommentService
     {
-        Task<IEnumerable<GetPostResponse>> FindByPost(int postId);
+        Task<IEnumerable<CommentResponse>> FindByPost(int postId);
     }
 }

@@ -7,7 +7,8 @@ builder.Services.AddHttpClient<IPostService, PostService>(c =>
 c.BaseAddress = new Uri("https://localhost:7287/"));
 builder.Services.AddHttpClient<ITopicService, TopicService>(c =>
 c.BaseAddress = new Uri("https://localhost:7287/"));
-
+builder.Services.AddHttpClient<ICommentService, CommentService>(c =>
+c.BaseAddress = new Uri("https://localhost:7287/"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

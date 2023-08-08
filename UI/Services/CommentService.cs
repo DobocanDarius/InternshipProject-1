@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using RequestResponseModels.Posts.Request;
+using RequestResponseModels.Comments.Response;
 using RequestResponseModels.Posts.Response;
 using System.Text;
 using UI.Helpers;
@@ -15,10 +15,10 @@ namespace UI.Services
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<IEnumerable<GetPostResponse>> FindByPost(int postId)
+        public async Task<IEnumerable<CommentResponse>> FindByPost(int postId)
         {
             var response = await _client.GetAsync($"/api/Comment/{postId}");
-            return await response.ReadContentAsync<List<GetPostResponse>>();
+            return await response.ReadContentAsync<List<CommentResponse>>();
         }
     }
 }
