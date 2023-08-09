@@ -74,6 +74,20 @@ public class PostController : ControllerBase
         }
     }
 
+    [HttpPut("{postId}/upvote")]
+    public async Task<ActionResult> UpVotePost(int postId)
+    {
+        try
+        {
+            await _postManager.UpVotePost(postId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"An error occurred: {ex.Message}");
+        }
+    }
+
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeletePost(int id)
     {

@@ -13,7 +13,7 @@
                 @item.Body
                 <p style="padding-right:5px">Upvotes: @item.UpVotes</p>
             </div>
-
+            <input style="align-self:center; width:50%" type="button" value="Comments" onclick="location.href='@Url.Action("CommentByPost", "Comment", new { postId = item.Id })'" />
         </div>
     }
 </div>

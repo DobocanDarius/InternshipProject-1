@@ -1,3 +1,4 @@
+using API.Helpers;
 using API.Manager;
 using DataAccess.DbAccess;
 using DataAccess.Models;
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IComment, DataAccess.Repository.Comment>();
 builder.Services.AddScoped<ITopicManager, TopicManager>();
 builder.Services.AddScoped<ITopic, DataAccess.Repository.Topic>();
 builder.Services.AddScoped<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddScoped<TokenManager>();
 
 var app = builder.Build();
 

@@ -2,7 +2,7 @@
 	@Id int
 AS
 begin
-	select Title, Body, UpVotes
+	select Id, Title, Body, UpVotes
 	from dbo.[Post]
 	where TopicId = @Id;
 end

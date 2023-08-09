@@ -1,15 +1,21 @@
 ﻿using DataAccess.Repository;
 using RequestResponseModels.Users.Response;
 using RequestResponseModels.Users.Request;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using API.Helpers;
+
 namespace API.Manager;
 
 public class UserManager : IUserManager
 {
     private readonly IUser _userRepository;
-
-    public UserManager(IUser userRepository)
+    private TokenManager _tokenManager;
+    public UserManager(IUser userRepository, TokenManager tokenManager)
     {
         _userRepository = userRepository;
+        _tokenManager = tokenManager;
     }
 
     public async Task<IEnumerable<GetUserResponse>> GetUsers()
@@ -19,6 +25,17 @@ public class UserManager : IUserManager
         var response = users.Select(p => new GetUserResponse(p.Id, p.UserName));
 
         return response;
+    }
+    public async Task<LoginResponse>? LogIn(LoginRequest unauthenticatedUser)
+    {
+        LoginResponse user = await _userRepository.SearchUser(unauthenticatedUser.UserName, unauthenticatedUser.Password);
+
+        if (user != null)
+        {
+            return new LoginResponse(user.Id, user.UserName, user.Password, _tokenManager.CreateToken(user));
+        }
+
+        return null;
     }
 
     public async Task InsertUser(InsertUserRequest newUser)

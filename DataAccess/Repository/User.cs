@@ -1,6 +1,8 @@
 ﻿using DataAccess.DbAccess;
 using DataAccess.Models;
 using DataAccess.Repository;
+using RequestResponseModels.Users.Request;
+using RequestResponseModels.Users.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,12 @@ public class User : IUser
         return results.FirstOrDefault();
     }
 
+    public async Task<LoginResponse> SearchUser(string userName, string password)
+    {
+        var results = await _db.LoadData<LoginResponse, dynamic>("dbo.sp_UserAuth", new { UserName = userName, Password = password });
+        return results.FirstOrDefault();
+    }
+
     public Task InsertUser(Models.User user) =>
         _db.SaveData("dbo.sp_UserInsert", new { user.UserName, user.Password });
 
@@ -35,4 +43,6 @@ public class User : IUser
 
     public Task DeleteUser(int id) =>
         _db.SaveData("dbo.sp_UserDelete", new { Id = id });
+
+    
 }

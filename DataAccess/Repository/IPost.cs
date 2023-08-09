@@ -7,6 +7,6 @@
         Task<IEnumerable<Models.Post>> GetPosts();
         Task InsertPost(Models.Post post);
         Task UpdatePost(Models.Post post, int id);
-        Task UpVotePost(Models.Post post, int id);
+        Task UpVotePost(int id);
     }
 }

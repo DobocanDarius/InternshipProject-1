@@ -10,5 +10,6 @@ namespace WebApi.Manager
         Task UpdatePost(UpdatePostRequest newPost, int id);
         Task DeletePost(int id);
         Task<IEnumerable<GetPostResponse>> GetPostsByTopic(int id);
+        Task UpVotePost(int id);
     }
 }

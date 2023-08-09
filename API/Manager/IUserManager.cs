@@ -8,6 +8,7 @@ namespace API.Manager
         Task DeleteUser(int id);
         Task<IEnumerable<GetUserResponse>> GetUsers();
         Task InsertUser(InsertUserRequest newUser);
+        Task<LoginResponse>? LogIn(LoginRequest user);
         Task UpdateUser(InsertUserRequest user, int id);
     }
 }

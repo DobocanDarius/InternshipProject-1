@@ -76,11 +76,10 @@ public class PostManager : IPostManager
         await _postRepository.UpdatePost(postToUpdate, id);
     }
 
-    /*public async Task UpVotePost(int id)
+    public async Task UpVotePost(int id)
     {
-        // You can perform validation or additional logic here
         await _postRepository.UpVotePost(id);
-    }*/
+    }
 
     public async Task DeletePost(int id)
     {

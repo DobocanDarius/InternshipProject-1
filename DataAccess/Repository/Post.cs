@@ -31,7 +31,7 @@ namespace DataAccess.Repository
         public Task UpdatePost(Models.Post post, int id) =>
             _db.SaveData("dbo.sp_PostUpdate", new { Id = id, post.Title, post.Body });
 
-        public Task UpVotePost(Models.Post post, int id) =>
+        public Task UpVotePost(int id) =>
            _db.SaveData("dbo.sp_PostUpVote", new { Id = id });
 
         public Task DeletePost(int id) =>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RequestResponseModels.Users.Request;
 using RequestResponseModels.Users.Response;
+using System.Security.Cryptography.X509Certificates;
 using WebApi.Manager;
 
 namespace API.Controllers;
@@ -25,6 +26,24 @@ public class UserController : ControllerBase
         {
             var users = await _userManager.GetUsers();
             return Ok(users);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"An error occurred: {ex.Message}");
+        }
+    }
+    [HttpPost ("login")]
+    public async Task<ActionResult<LoginResponse>> Login(LoginRequest newUser)
+    {
+        try
+        {
+            var loggedIn = await _userManager.LogIn(newUser);
+            if (loggedIn.Token == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(loggedIn);
         }
         catch (Exception ex)
         {
