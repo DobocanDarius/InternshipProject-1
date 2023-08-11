@@ -21,6 +21,7 @@ namespace UI.Controllers
         }
         public async Task<IActionResult> PostByIndex(int topicId)
         {
+            ViewBag.TokenExists = HttpContext.Request.Cookies["AuthToken"] != null;
             var products = await _service.FindByTopic(topicId);
             return View(products);
         }
@@ -70,7 +71,7 @@ namespace UI.Controllers
         public async Task <IActionResult> DeletePost(int postId)
         {
             await _service.DeletePost(postId);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Get", "Post");
             
         }
 

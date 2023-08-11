@@ -45,7 +45,7 @@
             @Html.ActionLink("Create a New Post", "CreatePost", "Post", null, new { @class = "btn btn-dark" })
         </div>
     }
-    @foreach (var item in Model)
+    @foreach (var item in Model.Reverse())
     {
         <div class="post-container">
             <div class="post-content">
