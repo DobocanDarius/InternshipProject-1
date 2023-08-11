@@ -1,0 +1,14 @@
+﻿@using RequestResponseModels.Comments.Response
+@model IEnumerable<CommentResponse>
+<div>
+    @foreach (var item in Model)
+    {
+        <div style="border-style: solid; border-radius: 25px;display:flex; flex-direction:column; margin-bottom:10px">
+
+            <div style=" font-size:20px; font-weight: bold; padding-left:5px">
+                @item.Text
+            </div>
+
+        </div>
+    }
+</div>
