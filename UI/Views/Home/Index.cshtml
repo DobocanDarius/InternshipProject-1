@@ -1,28 +1,66 @@
 ﻿@using RequestResponseModels.Posts.Response
 @model IEnumerable<GetPostResponse>
+
+<style>
+    .post-container {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .post-content {
+        display: flex;
+        flex-direction: column;
+        font-size: 15px;
+    }
+
+    .post-title {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .post-body {
+        margin-bottom: 10px;
+    }
+
+    .post-details {
+        font-size: 12px;
+    }
+
+    .post-container:hover {
+        transition: 0.5s;
+        background-color: lightgrey;
+    }
+</style>
+
 <div>
-    @{
-        if ((bool)ViewBag.TokenExists)
-        {
-            <div style="margin-bottom:20px">
-                @Html.ActionLink("Create a New Post", "CreatePost", "Post", null, new { @class = "btn btn-primary" })
-            </div>
-        }
+    @if ((bool)ViewBag.TokenExists)
+    {
+        <div style="margin-bottom:20px">
+            @Html.ActionLink("Create a New Post", "CreatePost", "Post", null, new { @class = "btn btn-dark" })
+        </div>
     }
     @foreach (var item in Model)
     {
-        <div style="border-bottom-style:outset; display:flex; flex-direction:row; justify-content:space-between;  margin-bottom:10px">
-            <div style="display:flex; flex-direction:column; font-size:15px; font-weight: bold;">
-                @item.Title
-                <p>@item.Body</p>
-                <p>Upvotes: @item.UpVotes</p>
-            </div>
-            <div style="font-size:10px; display:flex; flex-direction:column;">
-                <input style="align-self:center;" type="button" value="Comments" onclick="location.href='@Url.Action("CommentByPost", "Comment", new { postId = item.Id })'" />
-                <button onclick="location.href='@Url.Action("UpVotePost", "Post", new { postId = item.Id })'">Upvote</button>
+        <div class="post-container">
+            <div class="post-content">
+                <p class="post-title">@item.Title</p>
+                <p class="post-body">@item.Body</p>
+                <p class="post-details">Upvotes: @item.UpVotes</p>
+                <p class="post-details">@item.CreatedAt</p>
+                <div>
+                    <input type="button" value="Comments" class="btn btn-secondary" onclick="location.href='@Url.Action("CommentByPost", "Comment", new { postId = item.Id })'" />
+                    @if ((bool)ViewBag.TokenExists)
+                    {
+                        <input type="button" value="UpVote" class="btn btn-success" onclick="location.href='@Url.Action("UpVotePost", "Post", new { postId = item.Id })'" />
+                    }
+                </div>
             </div>
         </div>
     }
-
 </div>
-

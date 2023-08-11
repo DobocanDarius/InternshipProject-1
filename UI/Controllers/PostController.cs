@@ -80,9 +80,14 @@ namespace UI.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-        public IActionResult UpdatePost()
+        public IActionResult UpdatePost(string title, string body)
         {
-            return View();
+            var updatePostResponse = new UpdatePostResponse
+            {
+                Title = title,
+                Body = body
+            };
+            return View(updatePostResponse);
         }
         [HttpPost]
         public async Task<IActionResult> UpdatePost(int id, UpdatePostResponse updatedPost)

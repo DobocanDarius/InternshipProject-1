@@ -1,15 +1,45 @@
 ﻿@using RequestResponseModels.Topics.Response
 @model IEnumerable<GetTopicResponse>
-<div>
-    @foreach (var item in Model)
-    {
-        <div style="border-style: solid; border-radius: 25px;display:flex; flex-direction:column; margin-bottom:10px">
 
-            <div style=" font-size:20px; font-weight: bold; padding-left:5px">
-                @item.Id
-                <input type="button" value="@item.Text" onclick="location.href='@Url.Action("PostByIndex", "Post", new{ topicId = item.Id})'"/>
-            </div>
-        </div>
+<style>
+    .topic-container {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
     }
 
-</div>
+    .topic-title {
+        font-size: 18px;
+        font-weight: bold;
+        padding-left: 10px;
+        margin-bottom: 5px;
+    }
+
+    .topic-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s;
+    }
+
+        .topic-button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+@foreach (var item in Model)
+{
+    <div class="topic-container">
+        <div class="topic-title">
+            @item.Text
+        </div>
+        <input type="button" value="View Posts" class="topic-button" onclick="location.href='@Url.Action("PostByIndex", "Post", new{ topicId = item.Id})'" />
+    </div>
+}

@@ -10,7 +10,7 @@ namespace RequestResponseModels.Posts.Response;
 
 public class GetPostResponse
 {
-    public GetPostResponse(int id, string title, string body, int? userId, int? upVotes, DateTime createdAt, int? topicId)
+    public GetPostResponse(int id, string title, string body, int? userId, int? upVotes, DateTime? createdAt, int? topicId)
     {
         Id = id;
         Title = title;
@@ -28,7 +28,7 @@ public class GetPostResponse
 
     public int? UpVotes { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
     public int? UserId { get; set; }
     public int? TopicId { get; set; }

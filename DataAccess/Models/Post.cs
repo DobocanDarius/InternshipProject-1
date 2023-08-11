@@ -16,7 +16,7 @@ public class Post
 
     public int? UpVotes { get; set; }
 
-    public DateTime? CreatedAt { get; set; } = DateTime.Now;
+    public DateTime? CreatedAt { get; set; } 
 
     public int? UserId { get; set; }
     public int? TopicId { get; set; }
