@@ -1,21 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using RequestResponseModels.Users.Request;
 using RequestResponseModels.Users.Response;
-using System.Net.Http;
+
+using UI.Services;
 
 namespace UI.Controllers
 {
     public class UserController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IUserService _service;
 
-        public UserController(IHttpClientFactory httpClientFactory)
+        public UserController(IHttpClientFactory httpClientFactory, IUserService service)
         {
             _httpClientFactory = httpClientFactory;
+            _service = service;
         }
 
         public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
         {
             return View();
         }
@@ -46,6 +54,26 @@ namespace UI.Controllers
 
             return View(loginRequest);
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Register(InsertUserRequest request)
+        {
+            if (ModelState.IsValid)
+            {
+                    try
+                    {
+                        var response = await _service.CreateUser(request);
+                        return RedirectToAction("Login", "User");
+                    }
+                    catch (SecurityTokenValidationException)
+                    {
+
+                    }
+            }
+            return RedirectToAction("Login", "User");
+        }
+        
 
         public IActionResult Logout()
         {

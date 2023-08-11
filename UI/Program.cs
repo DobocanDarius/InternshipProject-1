@@ -9,6 +9,8 @@ builder.Services.AddHttpClient<ITopicService, TopicService>(c =>
 c.BaseAddress = new Uri("https://localhost:7287/"));
 builder.Services.AddHttpClient<ICommentService, CommentService>(c =>
 c.BaseAddress = new Uri("https://localhost:7287/"));
+builder.Services.AddHttpClient<IUserService, UserService>(c =>
+c.BaseAddress = new Uri("https://localhost:7287/"));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 var app = builder.Build();
 

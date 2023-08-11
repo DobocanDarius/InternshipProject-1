@@ -29,7 +29,7 @@ public class PostManager : IPostManager
             p.Body,
             p.UserId,
             p.UpVotes,
-            (DateTime)p.CreatedAt,
+            p.CreatedAt,
             p.TopicId
 
         ));
@@ -46,7 +46,7 @@ public class PostManager : IPostManager
             p.Body,
             p.UserId,
             p.UpVotes,
-            (DateTime)p.CreatedAt,
+            p.CreatedAt,
             p.TopicId
 
         ));
@@ -64,7 +64,7 @@ public class PostManager : IPostManager
             p.Body,
             p.UserId,
             p.UpVotes,
-            (DateTime)p.CreatedAt,
+            p.CreatedAt,
             p.TopicId
 
         ));
