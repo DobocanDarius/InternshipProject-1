@@ -38,7 +38,7 @@ public class UserController : ControllerBase
         try
         {
             var loggedIn = await _userManager.LogIn(newUser);
-            if (loggedIn.Token == null)
+            if (loggedIn == null)
             {
                 return Unauthorized();
             }

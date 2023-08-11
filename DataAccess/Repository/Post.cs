@@ -28,6 +28,12 @@ namespace DataAccess.Repository
             var results = await _db.LoadData<Models.Post, dynamic>("dbo.sp_PostGetByTopic", new { Id = id });
             return results.ToList();
         }
+
+        public async Task<IEnumerable<Models.Post?>> GetPostByUser(int id)
+        {
+            var results = await _db.LoadData<Models.Post, dynamic>("dbo.sp_PostGetByUser", new { Id = id });
+            return results.ToList();
+        }
         public Task UpdatePost(Models.Post post, int id) =>
             _db.SaveData("dbo.sp_PostUpdate", new { Id = id, post.Title, post.Body });
 

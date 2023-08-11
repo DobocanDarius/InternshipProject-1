@@ -1,0 +1,18 @@
+﻿@using RequestResponseModels.Posts.Response
+@model UpdatePostResponse
+
+<h2>Edit Post</h2>
+
+<form asp-action="UpdatePost" method="post">
+
+    <div class="form-group">
+        <label for="Title">Title:</label>
+        <input type="text" class="form-control" id="Title" name="Title" asp-for="Title" />
+    </div>
+    <div class="form-group">
+        <label for="Body">Body:</label>
+        <textarea class="form-control" id="Body" name="Body" asp-for="Body"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Post</button>
+</form>

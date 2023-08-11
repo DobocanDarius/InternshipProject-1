@@ -30,12 +30,38 @@ namespace UI.Services
             return await response.ReadContentAsync<List<GetPostResponse>>();
         }
 
+        public async Task<IEnumerable<GetPostResponse>> FindByUser(int userId)
+        {
+            var response = await _client.GetAsync($"/api/Post/User/{userId}");
+            return await response.ReadContentAsync<List<GetPostResponse>>();
+        }
+
         public async Task<HttpResponseMessage> CreatePost(InsertPostRequest post)
         {
             var json = JsonConvert.SerializeObject(post);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await _client.PostAsync(BasePath, content);
+            return response;
+        }
+        public async Task<HttpResponseMessage> DeletePost(int postId)
+        {
+            var response = await _client.DeleteAsync($"{BasePath}/{postId}");
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> UpdatePost(int postId, UpdatePostRequest newPost)
+        {
+            var json = JsonConvert.SerializeObject(newPost);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _client.PutAsync($"{BasePath}/{postId}", content);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> UpVotePost(int postId)
+        {
+            var response = await _client.PutAsync($"{BasePath}/{postId}/upvote", null);
             return response;
         }
 

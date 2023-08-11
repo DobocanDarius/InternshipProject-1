@@ -18,6 +18,7 @@ namespace UI.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
+            ViewBag.TokenExists = HttpContext.Request.Cookies["AuthToken"] != null;
             var products = await _service.Find();
             return View(products);
         }

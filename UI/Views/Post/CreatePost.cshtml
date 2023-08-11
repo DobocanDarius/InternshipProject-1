@@ -12,13 +12,13 @@
         <label for="Body">Body:</label>
         <textarea class="form-control" id="Body" name="Body" asp-for="Body"></textarea>
     </div>
+    
     <div class="form-group">
-        <label for="UserId">User ID:</label>
-        <input type="number" class="form-control" id="UserId" name="UserId" asp-for="UserId" />
-    </div>
-    <div class="form-group">
-        <label for="TopicId">Topic ID:</label>
-        <input type="number" class="form-control" id="TopicId" name="TopicId" asp-for="TopicId" />
+        <label for="TopicId">Topic:</label>
+        <select class="form-control" id="TopicId" name="TopicId" asp-for="TopicId">
+            <option value="1">Gaming</option>
+            <option value="2">Cooking</option>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Create Post</button>
 </form>

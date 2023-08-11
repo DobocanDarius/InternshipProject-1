@@ -46,5 +46,12 @@ namespace UI.Controllers
 
             return View(loginRequest);
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Response.Cookies.Delete("AuthToken");
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

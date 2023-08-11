@@ -45,6 +45,19 @@ public class PostController : ControllerBase
             return BadRequest($"An error occurred: {ex.Message}");
         }
     }
+    [HttpGet("user/{userId}")]
+    public async Task<ActionResult<IEnumerable<GetPostResponse>>> GetPostsByUser(int userId)
+    {
+        try
+        {
+            var posts = await _postManager.GetPostsByUser(userId);
+            return Ok(posts);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"An error occurred: {ex.Message}");
+        }
+    }
 
     [HttpPost]
     public async Task<ActionResult> InsertPost(InsertPostRequest newPost)

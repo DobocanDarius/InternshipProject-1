@@ -90,6 +90,7 @@
     <Build Include="dbo\Procedures\Topic\sp_TopicGetAll.sql" />
     <Build Include="dbo\Procedures\Comment\sp_CommentGetByPost.sql" />
     <Build Include="dbo\Procedures\User\sp_UserAuth.sql" />
+    <Build Include="dbo\Procedures\Post\sp_PostGetByUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SQLDatabase.refactorlog" />

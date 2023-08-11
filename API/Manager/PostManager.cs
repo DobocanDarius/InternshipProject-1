@@ -53,8 +53,27 @@ public class PostManager : IPostManager
 
         return response;
     }
+
+    public async Task<IEnumerable<GetPostResponse>> GetPostsByUser(int id)
+    {
+        var posts = await _postRepository.GetPostByUser(id);
+
+        var response = posts.Select(p => new GetPostResponse(
+            p.Id,
+            p.Title,
+            p.Body,
+            p.UserId,
+            p.UpVotes,
+            (DateTime)p.CreatedAt,
+            p.TopicId
+
+        ));
+
+        return response;
+    }
     public async Task InsertPost(InsertPostRequest newPost)
     {
+
         var post = new DataAccess.Models.Post
         {
             Title = newPost.Title,
