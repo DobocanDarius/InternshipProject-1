@@ -33,7 +33,7 @@
 </style>
 
 <div>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Reverse())
     {
         <div class="post-container">
             <div class="post-title">
@@ -43,7 +43,14 @@
                 @item.Body
                 <p class="upvotes">Upvotes: @item.UpVotes</p>
             </div>
-            <input type="button" value="Comments" class="btn btn-secondary" onclick="location.href='@Url.Action("CommentByPost", "Comment", new { postId = item.Id })'" />
+            <div>
+                <input type="button" value="Comments" class="btn btn-secondary" onclick="location.href='@Url.Action("CommentByPost", "Comment", new { postId = item.Id })'" />
+                @if ((bool)ViewBag.TokenExists)
+                {
+                    <input type="button" value="UpVote" class="btn btn-success" onclick="location.href='@Url.Action("UpVotePost", "Post", new { postId = item.Id })'" />
+                }
+            </div>
+            
         </div>
     }
 </div>
