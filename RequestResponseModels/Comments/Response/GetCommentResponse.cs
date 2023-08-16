@@ -33,5 +33,5 @@ public class GetCommentResponse
 
     public virtual GetPostResponse Post { get; set; } = null!;
 
-    public virtual GetUserResponse User { get; set; } = null!;
+    public virtual UserResponse User { get; set; } = null!;
 }

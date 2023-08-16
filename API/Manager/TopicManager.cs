@@ -7,9 +7,9 @@ namespace API.Manager;
 
 public class TopicManager : ITopicManager
 {
-    private readonly ITopic _topicRepository;
+    private readonly ITopicRepository _topicRepository;
 
-    public TopicManager(ITopic topicRepository)
+    public TopicManager(ITopicRepository topicRepository)
     {
         _topicRepository = topicRepository;
     }

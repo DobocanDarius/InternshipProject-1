@@ -20,11 +20,11 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<GetUserResponse>>> GetUsers()
+    public async Task<ActionResult<UserResponse>> Users()
     {
         try
         {
-            var users = await _userManager.GetUsers();
+            var users = await _userManager.Users();
             return Ok(users);
         }
         catch (Exception ex)

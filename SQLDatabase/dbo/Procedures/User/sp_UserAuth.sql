@@ -5,5 +5,5 @@ AS
 begin
 	select Id, UserName, Password
 	from dbo.[User]
-	where UserName = @UserName and Password = @Password
+	where UserName = @UserName and  Password = @Password
 end

@@ -5,34 +5,40 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using API.Helpers;
+using DataAccess.Models;
 
 namespace API.Manager;
 
 public class UserManager : IUserManager
 {
-    private readonly IUser _userRepository;
+    private readonly IUserRepository _userRepository;
     private TokenManager _tokenManager;
-    public UserManager(IUser userRepository, TokenManager tokenManager)
+    private PasswordHash _passwordHash;
+
+    public UserManager(IUserRepository userRepository, TokenManager tokenManager, PasswordHash passwordHash)
     {
         _userRepository = userRepository;
         _tokenManager = tokenManager;
+        _passwordHash = passwordHash;
     }
 
-    public async Task<IEnumerable<GetUserResponse>> GetUsers()
+    public async Task<UserResponse> Users()
     {
-        var users = await _userRepository.GetUsers();
+        var users = await _userRepository.Users();
 
-        var response = users.Select(p => new GetUserResponse(p.Id, p.UserName));
+        var userResult = users.Select(u => new UserRequest(u.Id, u.UserName));
 
-        return response;
+        return new UserResponse { Users = userResult };
     }
     public async Task<LoginResponse>? LogIn(LoginRequest unauthenticatedUser)
     {
-        LoginResponse user = await _userRepository.SearchUser(unauthenticatedUser.UserName, unauthenticatedUser.Password);
+        var user = await _userRepository.SearchUser(unauthenticatedUser.UserName, _passwordHash.HashPassword(unauthenticatedUser.Password));
 
-        if (user != null)
+        var userResult = user.Select(u => new LoginRequest(u.Id, u.UserName, _passwordHash.HashPassword(u.Password)));
+
+        if (userResult.Count() == 1)
         {
-            return new LoginResponse(user.Id, user.UserName, user.Password, _tokenManager.CreateToken(user));
+            return new LoginResponse { Users = userResult, Token = _tokenManager.CreateToken(userResult.FirstOrDefault()) };
         }
 
         return null;
@@ -40,17 +46,17 @@ public class UserManager : IUserManager
 
     public async Task InsertUser(InsertUserRequest newUser)
     {
-        var user = new DataAccess.Models.User
+        var user = new InsertUserRequest
         {
             UserName = newUser.UserName,
-            Password = newUser.Password
+            Password = _passwordHash.HashPassword(newUser.Password)
         };
         await _userRepository.InsertUser(user);
     }
 
     public async Task UpdateUser(InsertUserRequest user, int id)
     {
-        var userToUpdate = new DataAccess.Models.User
+        var userToUpdate = new InsertUserRequest
         {
             UserName = user.UserName,
             Password = user.Password

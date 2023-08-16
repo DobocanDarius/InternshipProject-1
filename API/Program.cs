@@ -14,15 +14,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPostManager, PostManager>();
-builder.Services.AddScoped<IPost, DataAccess.Repository.Post>();
+builder.Services.AddScoped<IPostRepository, DataAccess.Repository.PostRepository>();
 builder.Services.AddScoped<IUserManager, UserManager>();
-builder.Services.AddScoped<IUser, DataAccess.Repository.User>();
+builder.Services.AddScoped<IUserRepository, DataAccess.Repository.UserRepository>();
 builder.Services.AddScoped<ICommentManager, CommentManager>();
-builder.Services.AddScoped<IComment, DataAccess.Repository.Comment>();
+builder.Services.AddScoped<ICommentRepository, DataAccess.Repository.CommentRepository>();
 builder.Services.AddScoped<ITopicManager, TopicManager>();
-builder.Services.AddScoped<ITopic, DataAccess.Repository.Topic>();
+builder.Services.AddScoped<ITopicRepository, DataAccess.Repository.TopicRepository>();
 builder.Services.AddScoped<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddScoped<TokenManager>();
+builder.Services.AddScoped<PasswordHash>();
 
 var app = builder.Build();
 

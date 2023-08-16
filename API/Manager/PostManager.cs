@@ -12,9 +12,9 @@ namespace WebApi.Manager;
 
 public class PostManager : IPostManager
 {
-    private readonly IPost _postRepository;
+    private readonly IPostRepository _postRepository;
 
-    public PostManager(IPost postRepository)
+    public PostManager(IPostRepository postRepository)
     {
         _postRepository = postRepository;
     }
@@ -74,7 +74,7 @@ public class PostManager : IPostManager
     public async Task InsertPost(InsertPostRequest newPost)
     {
 
-        var post = new DataAccess.Models.Post
+        var post = new InsertPostRequest
         {
             Title = newPost.Title,
             Body = newPost.Body,
@@ -86,7 +86,7 @@ public class PostManager : IPostManager
 
     public async Task UpdatePost(UpdatePostRequest post, int id)
     {
-        var postToUpdate = new DataAccess.Models.Post
+        var postToUpdate = new UpdatePostRequest
         {
             Title = post.Title,
             Body = post.Body,

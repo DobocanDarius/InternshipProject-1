@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestResponseModels.Users.Response;
+namespace RequestResponseModels.Users.Request;
 
-public class GetUserResponse
+public class UserRequest
 {
-    public GetUserResponse(int id, string userName)
+    public UserRequest(int id, string userName)
     {
         Id = id;
         UserName = userName;

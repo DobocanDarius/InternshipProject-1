@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RequestResponseModels.Users.Request;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +9,12 @@ namespace RequestResponseModels.Users.Response;
 
 public class LoginResponse
 {
-    public int Id { get; set; }
-    public string UserName { get; set; }
-    public string Password { get; set; }
     public string? Token { get; set; }
-
+    public IEnumerable<LoginRequest> Users { get; set; }
     public LoginResponse()
     {
+        Users = new List<LoginRequest>();
+        Token = string.Empty;
     }
-    public LoginResponse(int id, string userName, string password, string? token)
-    {
-        Id = id;
-        UserName = userName;
-        Password = password;
-        Token = token;
-    }
+   
 }

@@ -10,4 +10,9 @@ public class InsertUserRequest
 {
     public string UserName { get; set; }
     public string Password { get; set; }
+    public InsertUserRequest(string userName, string password)
+    {
+        UserName = userName;
+        Password = password;
+    }
 }

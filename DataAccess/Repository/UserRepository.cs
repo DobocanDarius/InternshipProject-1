@@ -11,34 +11,31 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository;
 
-public class User : IUser
+public class UserRepository : IUserRepository
 {
     private readonly ISqlDataAccess _db;
 
-    public User(ISqlDataAccess db)
+    public UserRepository(ISqlDataAccess db)
     {
         _db = db;
     }
 
-    public Task<IEnumerable<Models.User>> GetUsers() =>
+    public Task<IEnumerable<Models.User>> Users() =>
         _db.LoadData<Models.User, dynamic>("dbo.sp_UserGetAll", new { });
 
-    public async Task<Models.User?> GetUser(int id)
+    public async Task<UserResponse?> GetUser(int id)
     {
-        var results = await _db.LoadData<Models.User, dynamic>("dbo.sp_UserGet", new { Id = id });
+        var results = await _db.LoadData<UserResponse, dynamic>("dbo.sp_UserGet", new { Id = id });
         return results.FirstOrDefault();
     }
 
-    public async Task<LoginResponse> SearchUser(string userName, string password)
-    {
-        var results = await _db.LoadData<LoginResponse, dynamic>("dbo.sp_UserAuth", new { UserName = userName, Password = password });
-        return results.FirstOrDefault();
-    }
+    public Task<IEnumerable<Models.User>> SearchUser(string userName, string password) => 
+        _db.LoadData<Models.User, dynamic>("dbo.sp_UserAuth", new { UserName = userName, Password = password });
 
-    public Task InsertUser(Models.User user) =>
+    public Task InsertUser(InsertUserRequest user) =>
         _db.SaveData("dbo.sp_UserInsert", new { user.UserName, user.Password });
 
-    public Task UpdateUser(Models.User user, int id) =>
+    public Task UpdateUser(InsertUserRequest user, int id) =>
         _db.SaveData("dbo.sp_UserUpdate", new { Id = id, user.UserName, user.Password });
 
     public Task DeleteUser(int id) =>
