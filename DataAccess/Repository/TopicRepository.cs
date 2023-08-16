@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class Topic : ITopic
+    public class TopicRepository : ITopicRepository
     {
         private readonly ISqlDataAccess _db;
 
-        public Topic(ISqlDataAccess db)
+        public TopicRepository(ISqlDataAccess db)
         {
             _db = db;
         }

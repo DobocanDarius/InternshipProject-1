@@ -10,7 +10,8 @@ namespace RequestResponseModels.Posts.Response;
 
 public class GetPostResponse
 {
-    public GetPostResponse(int id, string title, string body, int? userId, int? upVotes, DateTime? createdAt, int? topicId)
+    public GetPostResponse() { }
+    public GetPostResponse(int id, string? title, string? body, int? userId, int? upVotes, DateTime? createdAt, int? topicId)
     {
         Id = id;
         Title = title;

@@ -6,9 +6,9 @@ namespace API.Manager;
 
 public class CommentManager : ICommentManager
 {
-    private readonly IComment _commentRepository;
+    private readonly ICommentRepository _commentRepository;
 
-    public CommentManager(IComment commentRepository)
+    public CommentManager(ICommentRepository commentRepository)
     {
         _commentRepository = commentRepository;
     }

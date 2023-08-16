@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RequestResponseModels.Posts.Request;
 using RequestResponseModels.Posts.Response;
@@ -13,10 +14,12 @@ namespace UI.Controllers
     {
         private readonly ILogger<PostController> _logger;
         private readonly IPostService _service;
-        public PostController(ILogger<PostController> logger, IPostService service)
+        private readonly IConfiguration _configuration;
+        public PostController(ILogger<PostController> logger, IPostService service, IConfiguration configuration)
         {
             _logger = logger;
             _service = service ?? throw new ArgumentNullException(nameof(service));
+            _configuration = configuration ?? throw new ArgumentNullException( nameof(configuration));
 
         }
         public async Task<IActionResult> PostByIndex(int topicId)
@@ -35,7 +38,7 @@ namespace UI.Controllers
                 var validationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Jj2e2VFqjCQoRoElxKkrKMGS3TYOTWxk")),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:Key").Value)),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
@@ -71,7 +74,7 @@ namespace UI.Controllers
         public async Task <IActionResult> DeletePost(int postId)
         {
             await _service.DeletePost(postId);
-            return RedirectToAction("Get", "Post");
+            return RedirectToAction("PostByUser", "Post");
             
         }
 
@@ -105,7 +108,7 @@ namespace UI.Controllers
 
                     if (response.IsSuccessStatusCode)
                     {
-                        return RedirectToAction("Index", "Home"); 
+                        return RedirectToAction("PostByUser", "Post");
                     }
                     else
                     {
@@ -134,7 +137,7 @@ namespace UI.Controllers
                     var validationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true, 
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Jj2e2VFqjCQoRoElxKkrKMGS3TYOTWxk")), 
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:Key").Value)), 
                         ValidateIssuer = false,
                         ValidateAudience = false
                     };

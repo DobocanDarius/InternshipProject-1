@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Repository
 {
-    public interface IComment
+    public interface ICommentRepository
     {
         Task DeleteComment(int id);
         Task<IEnumerable<Models.Comment?>> GetCommentByPost(int id);

@@ -2,5 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [UserName] NVARCHAR(MAX) NOT NULL, 
-    [Password] NVARCHAR(50) NOT NULL
+    [Password] NVARCHAR(50) NOT NULL, 
+    [Salt] VARBINARY(16) NULL,
+   
 )

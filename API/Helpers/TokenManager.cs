@@ -16,7 +16,7 @@ namespace API.Helpers
             _configuration = configuration;
         }
 
-        public string CreateToken(LoginResponse user)
+        public string CreateToken(LoginRequest user)
         {
             List<Claim> claims = new List<Claim>
             {

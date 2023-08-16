@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repository
 {
-    public class Comment : IComment
+    public class CommentRepository : ICommentRepository
     {
         private readonly ISqlDataAccess _db;
 
-        public Comment(ISqlDataAccess db)
+        public CommentRepository(ISqlDataAccess db)
         {
             _db = db;
         }
